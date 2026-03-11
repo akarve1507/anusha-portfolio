@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anusha Anand Karve | Portfolio</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Raleway:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --c-red: #C45161;
+      --c-rose: #E094A0;
+      --c-pink: #F2B6C0;
+      --c-blush: #F2DDE1;
+      --c-lav: #CBC7D8;
+      --c-blue: #8DB7D2;
+      --c-purple: #5E62A9;
+      --c-deep: #434279;
+
+      --bg: #FCFAFB;
+      --text: var(--c-deep);
+      --muted: rgba(67,66,121,0.75);
+      --card: rgba(242,221,225,0.55);
+      --border: rgba(203,199,216,0.9);
+
+      --radius: 18px;
+      --shadow: 0 16px 50px rgba(67,66,121,0.12);
+      --shadow2: 0 10px 30px rgba(67,66,121,0.10);
+      --container: 1120px;
+
+      --ease: cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(141,183,210,0.25), transparent 60%),
+        radial-gradient(800px 550px at 90% 0%, rgba(242,182,192,0.28), transparent 60%),
+        radial-gradient(900px 700px at 80% 95%, rgba(203,199,216,0.35), transparent 60%),
+        var(--bg);
+    }
+
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    /* Layout */
+    .container{max-width:var(--container); margin:0 auto; padding:0 20px}
+    section{padding:86px 0}
+    .section-head{
+      display:flex; justify-content:space-between; align-items:flex-end;
+      gap:16px; margin-bottom:28px;
+    }
+    .kicker{
+      font-family:"Lora", serif;
+      color:rgba(67,66,121,0.8);
+      font-style:italic;
+      margin:0 0 8px 0;
+    }
+    h2{
+      font-family:"Raleway", sans-serif;
+      letter-spacing:-0.02em;
+      margin:0;
+      font-size:34px;
+      line-height:1.15;
+    }
+    .sub{
+      color:var(--muted);
+      margin:0;
+      max-width:62ch;
+      line-height:1.6;
+    }
+
+    /* Navbar */
+    .nav-wrap{
+      position:sticky; top:0; z-index:100;
+      backdrop-filter: blur(10px);
+      background: rgba(252,250,251,0.72);
+      border-bottom:1px solid rgba(203,199,216,0.55);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      min-width: 220px;
+    }
+    .brand-badge{
+      width:36px; height:36px; border-radius:12px;
+      background: linear-gradient(135deg, var(--c-purple), var(--c-blue));
+      box-shadow: var(--shadow2);
+    }
+    .brand-name{
+      font-family:"Raleway", sans-serif;
+      font-weight:800;
+      letter-spacing:-0.02em;
+    }
+    .nav-links{
+      display:flex; gap:18px; align-items:center; flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav-links a{
+      font-size:14px;
+      color:rgba(67,66,121,0.86);
+      padding:8px 10px;
+      border-radius:12px;
+      transition: background .25s var(--ease), color .25s var(--ease);
+    }
+    .nav-links a:hover{
+      background: rgba(203,199,216,0.4);
+    }
+    .nav-links a.active{
+      background: rgba(94,98,169,0.14);
+      color: var(--c-deep);
+      box-shadow: inset 0 0 0 1px rgba(94,98,169,0.18);
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      border:1px solid transparent;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:600;
+      cursor:pointer;
+      transition: transform .18s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease), border .25s var(--ease);
+      user-select:none;
+      will-change: transform;
+    }
+    .btn:active{transform: translateY(1px)}
+    .btn-primary{
+      background: var(--c-purple);
+      color: white;
+      box-shadow: var(--shadow2);
+    }
+    .btn-primary:hover{box-shadow: var(--shadow)}
+    .btn-secondary{
+      background: rgba(242,221,225,0.75);
+      border-color: rgba(203,199,216,0.85);
+      color: var(--c-deep);
+    }
+    .btn-secondary:hover{
+      background: rgba(242,221,225,0.95);
+      box-shadow: var(--shadow2);
+    }
+    .btn-ghost{
+      background: transparent;
+      border-color: rgba(203,199,216,0.8);
+      color: var(--c-deep);
+    }
+    .btn-ghost:hover{background: rgba(203,199,216,0.28)}
+    .btn-sm{padding:10px 12px; border-radius:12px; font-size:14px}
+
+    /* Hero */
+    .hero{
+      padding:72px 0 36px 0;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap:28px;
+      align-items:center;
+    }
+    h1{
+      font-family:"Raleway", sans-serif;
+      font-size:54px;
+      line-height:1.05;
+      letter-spacing:-0.03em;
+      margin:0 0 10px 0;
+    }
+    .tagline{
+      font-family:"Lora", serif;
+      font-style:italic;
+      font-size:18px;
+      color:rgba(67,66,121,0.86);
+      margin:0 0 14px 0;
+    }
+    .hero p{
+      margin:0 0 20px 0;
+      color: var(--muted);
+      line-height:1.7;
+      max-width:62ch;
+    }
+    .hero-cta{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+    .quicklinks{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(203,199,216,0.25);
+      border:1px solid rgba(203,199,216,0.65);
+      color: rgba(67,66,121,0.9);
+      font-size:13px;
+    }
+    .hero-card{
+      border-radius: var(--radius);
+      background: rgba(242,221,225,0.55);
+      border: 1px solid rgba(203,199,216,0.75);
+      box-shadow: var(--shadow2);
+      padding: 16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-card::before{
+      content:"";
+      position:absolute; inset:-40px -40px auto auto;
+      width:180px; height:180px; border-radius:40px;
+      background: radial-gradient(circle at 30% 30%, rgba(141,183,210,0.5), transparent 60%);
+      transform: rotate(18deg);
+    }
+    .avatar{
+      border-radius: 16px;
+      border: 1px solid rgba(203,199,216,0.8);
+      overflow:hidden;
+      aspect-ratio: 1 / 1;
+      background: rgba(252,250,251,0.8);
+    }
+    .hero-card .meta{
+      margin-top:12px;
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+
+    /* Cards and grids */
+    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+    .grid-3{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px}
+    .card{
+      border-radius: var(--radius);
+      background: rgba(252,250,251,0.7);
+      border: 1px solid rgba(203,199,216,0.75);
+      box-shadow: 0 10px 25px rgba(67,66,121,0.08);
+      padding: 18px;
+      transition: transform .22s var(--ease), box-shadow .28s var(--ease), border .28s var(--ease);
+    }
+    .card:hover{
+      transform: translateY(-3px);
+      box-shadow: var(--shadow2);
+      border-color: rgba(94,98,169,0.28);
+    }
+
+    /* Projects */
+    .project-title{
+      display:flex; justify-content:space-between; align-items:flex-start; gap:12px;
+      margin-bottom:10px;
+    }
+    .project-title h3{
+      font-family:"Raleway", sans-serif;
+      margin:0;
+      font-size:18px;
+      line-height:1.2;
+      letter-spacing:-0.01em;
+    }
+    .project-problem{margin:0 0 12px 0; color:var(--muted); line-height:1.6}
+    ul.clean{margin:0 0 12px 18px; color:rgba(67,66,121,0.88); line-height:1.6}
+    .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
+    .tag{
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      background: rgba(141,183,210,0.22);
+      border:1px solid rgba(141,183,210,0.35);
+      color: rgba(67,66,121,0.9);
+    }
+    .project-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+
+    /* Experience */
+    .timeline{display:flex; flex-direction:column; gap:14px}
+    .tl{
+      display:grid; grid-template-columns: 150px 1fr; gap:14px;
+      align-items:flex-start;
+      padding:16px;
+      border-radius: var(--radius);
+      border:1px solid rgba(203,199,216,0.75);
+      background: rgba(252,250,251,0.65);
+    }
+    .when{color:rgba(67,66,121,0.75); font-size:13px}
+    .role{margin:0; font-weight:700}
+    .org{margin:4px 0 8px 0; color:var(--muted)}
+    .tl ul{margin:0 0 0 18px; color:rgba(67,66,121,0.88); line-height:1.6}
+
+    /* Skills */
+    .skill-group h3{
+      font-family:"Raleway", sans-serif;
+      margin:0 0 10px 0; font-size:16px;
+    }
+    .pillrow{display:flex; flex-wrap:wrap; gap:10px}
+    .pill{
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(242,221,225,0.65);
+      border:1px solid rgba(203,199,216,0.85);
+      font-size:13px;
+      color: rgba(67,66,121,0.9);
+      transition: transform .18s var(--ease);
+    }
+    .pill:hover{transform: translateY(-2px)}
+
+    /* Contact */
+    form{display:grid; gap:12px}
+    label{font-size:13px; color: rgba(67,66,121,0.85)}
+    input, textarea{
+      width:100%;
+      border-radius:14px;
+      border:1px solid rgba(203,199,216,0.85);
+      padding:12px 12px;
+      font: inherit;
+      background: rgba(252,250,251,0.8);
+      outline:none;
+      transition: box-shadow .2s var(--ease), border .2s var(--ease);
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(94,98,169,0.55);
+      box-shadow: 0 0 0 4px rgba(94,98,169,0.15);
+    }
+    textarea{min-height:120px; resize:vertical}
+    .form-row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+
+    .note{
+      margin:0;
+      font-size:13px;
+      color: rgba(67,66,121,0.75);
+      line-height:1.5;
+    }
+
+    /* Footer */
+    footer{
+      padding:30px 0 42px 0;
+      border-top:1px solid rgba(203,199,216,0.6);
+      color: rgba(67,66,121,0.75);
+    }
+    .foot{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:center}
+    .foot a{color: rgba(67,66,121,0.85); text-decoration:underline; text-decoration-color: rgba(94,98,169,0.28)}
+    .foot a:hover{color: var(--c-deep)}
+
+    /* Scroll reveal animations */
+    .reveal{
+      opacity:0;
+      transform: translateY(18px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+      will-change: opacity, transform;
+    }
+    .reveal.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+    .reveal.delay-1{transition-delay:.08s}
+    .reveal.delay-2{transition-delay:.16s}
+    .reveal.delay-3{transition-delay:.24s}
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero-grid{grid-template-columns:1fr; }
+      h1{font-size:44px}
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .tl{grid-template-columns:1fr}
+      .brand{min-width:auto}
+    }
+    @media (max-width: 520px){
+      h1{font-size:38px}
+      .form-row{grid-template-columns:1fr}
+      .nav-links{gap:8px}
+      .nav-links a{padding:8px 8px}
+    }
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .reveal, .card, .btn, .pill{transition:none !important}
+      .reveal{opacity:1; transform:none}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <div class="nav-wrap">
+    <div class="container">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="#top">
+          <span class="brand-badge" aria-hidden="true"></span>
+          <span class="brand-name">Anusha Anand Karve</span>
+        </a>
+
+        <div class="nav-links" role="navigation">
+          <a href="#about" data-nav="about">About</a>
+          <a href="#projects" data-nav="projects">Projects</a>
+          <a href="#experience" data-nav="experience">Experience</a>
+          <a href="#skills" data-nav="skills">Skills</a>
+          <a href="#certs" data-nav="certs">Certifications</a>
+          <a href="#contact" data-nav="contact">Contact</a>
+          <a class="btn btn-sm btn-primary" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <main id="top" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="reveal show">
+            <h1>Anusha Anand Karve</h1>
+            <p class="tagline">Data Analyst / Data Engineer focused on building reliable pipelines and insights.</p>
+            <p>
+              I build analytics solutions and data systems using <b>Python</b>, <b>SQL</b>, and modern tooling.
+              I’m currently seeking <b>USA internship opportunities</b> in Data Analytics / Data Engineering.
+            </p>
+            <div class="hero-cta">
+              <button class="btn btn-primary" id="btnProjects">View Projects</button>
+              <button class="btn btn-secondary" id="btnContact">Get in Touch</button>
+              <a class="btn btn-ghost" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+              <a class="btn btn-ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+
+            <div class="quicklinks">
+              <span class="chip">Python • SQL • ETL</span>
+              <span class="chip">Dashboards • Insights</span>
+              <span class="chip">Cloud & Data Tools</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card reveal show delay-1" aria-label="Profile card">
+          <div class="avatar">
+            <!-- Replace src with your image path -->
+            <img src="profile.jpg" alt="Portrait of Anusha Anand Karve">
+          </div>
+          <div class="meta">
+            <span class="chip">Open to Summer Internships</span>
+            <span class="chip">USA</span>
+            <span class="chip">Data • Analytics • Engineering</span>
+          </div>
+          <p class="note" style="margin-top:12px;">
+            Tip: Put the simple site link on the resume and applications. Use the themed site for LinkedIn + networking.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <p class="kicker">A quick intro</p>
+          <h2>About</h2>
+        </div>
+        <p class="sub">
+          Keep this section short. Recruiters care most about projects + skills + impact.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card reveal">
+          <h3 style="font-family:'Raleway',sans-serif;margin:0 0 10px 0;">What I do</h3>
+          <p class="sub" style="margin:0;">
+            I enjoy turning messy data into trustworthy insights — from cleaning and modeling data to building
+            dashboards and pipelines. I care about correctness, clarity, and measurable outcomes.
+          </p>
+        </div>
+
+        <div class="card reveal delay-1">
+          <h3 style="font-family:'Raleway',sans-serif;margin:0 0 10px 0;">What I'm looking for</h3>
+          <ul class="clean">
+            <li>Data Analyst / Data Engineer internships (USA)</li>
+            <li>Work involving SQL, Python, dashboards, ETL, and analytics</li>
+            <li>Teams that value ownership, communication, and clean systems</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <p class="kicker">High-signal work</p>
+          <h2>Projects</h2>
+        </div>
+        <p class="sub">Add 3–5 projects max. Each should show problem → approach → measurable result.</p>
+      </div>
+
+      <div class="grid-3">
+        <article class="card reveal">
+          <div class="project-title">
+            <h3>ProactiveSLO</h3>
+            <span class="chip">Case Study</span>
+          </div>
+          <p class="project-problem">Predict SLO violations 30–60 seconds ahead using telemetry signals.</p>
+          <ul class="clean">
+            <li>Built feature pipeline with sliding windows over service metrics.</li>
+            <li>Trained baseline models and evaluated precision/recall tradeoffs.</li>
+            <li>Added guardrails + actions: tuning, rate limiting, autoscaling.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Prometheus</span><span class="tag">ML</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn btn-sm btn-primary" href="#" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-sm btn-secondary" href="#" target="_blank" rel="noopener">Demo</a>
+          </div>
+        </article>
+
+        <article class="card reveal delay-1">
+          <div class="project-title">
+            <h3>Distributed Task Processing Service</h3>
+            <span class="chip">System</span>
+          </div>
+          <p class="project-problem">Async job scheduling with concurrency-safe workers and retries.</p>
+          <ul class="clean">
+            <li>DB-backed leasing + retry logic for reliable processing.</li>
+            <li>Benchmarked throughput and failure behavior under load.</li>
+            <li>Designed clean APIs and observability-ready metrics.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Backend</span><span class="tag">Distributed</span><span class="tag">SQL</span><span class="tag">Monitoring</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn btn-sm btn-primary" href="#" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-sm btn-secondary" href="#" target="_blank" rel="noopener">Write-up</a>
+          </div>
+        </article>
+
+        <article class="card reveal delay-2">
+          <div class="project-title">
+            <h3>Analytics Dashboard Project</h3>
+            <span class="chip">Dashboard</span>
+          </div>
+          <p class="project-problem">Interactive dashboard to track KPIs and uncover trends.</p>
+          <ul class="clean">
+            <li>Modeled data with clean definitions for consistent reporting.</li>
+            <li>Built visuals for trends, cohorts, and breakdowns.</li>
+            <li>Documented metrics and dashboard usage for stakeholders.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">SQL</span><span class="tag">Tableau/PowerBI</span><span class="tag">EDA</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn btn-sm btn-primary" href="#" target="_blank" rel="noopener">Dashboard</a>
+            <a class="btn btn-sm btn-secondary" href="#" target="_blank" rel="noopener">Notes</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <p class="kicker">Timeline</p>
+          <h2>Experience</h2>
+        </div>
+        <p class="sub">Even academic/research/club work is valuable if framed with impact + outcomes.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="tl reveal">
+          <div class="when">2025 — Present</div>
+          <div>
+            <p class="role">Graduate Student</p>
+            <p class="org">SDSU — Computer Science</p>
+            <ul>
+              <li>Built data/engineering projects focused on reliability, analytics, and automation.</li>
+              <li>Applied statistical + engineering methods to evaluate models and system performance.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl reveal delay-1">
+          <div class="when">Add dates</div>
+          <div>
+            <p class="role">Data/Analytics Role (Placeholder)</p>
+            <p class="org">Organization / Team</p>
+            <ul>
+              <li>Action + tool + result (use numbers wherever possible).</li>
+              <li>Example: Improved query runtime by X% / processed Y rows / built Z dashboards.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <p class="kicker">Toolbox</p>
+          <h2>Skills</h2>
+        </div>
+        <p class="sub">Group skills for recruiter scanning. Keep it honest + aligned with projects.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card reveal skill-group">
+          <h3>Languages</h3>
+          <div class="pillrow">
+            <span class="pill">Python</span>
+            <span class="pill">SQL</span>
+            <span class="pill">Java (optional)</span>
+          </div>
+        </div>
+
+        <div class="card reveal delay-1 skill-group">
+          <h3>Data & Analytics</h3>
+          <div class="pillrow">
+            <span class="pill">Pandas</span>
+            <span class="pill">NumPy</span>
+            <span class="pill">EDA</span>
+            <span class="pill">Data Cleaning</span>
+            <span class="pill">Statistics</span>
+          </div>
+        </div>
+
+        <div class="card reveal delay-2 skill-group">
+          <h3>Data Engineering / Tools</h3>
+          <div class="pillrow">
+            <span class="pill">ETL</span>
+            <span class="pill">Airflow (optional)</span>
+            <span class="pill">Spark (optional)</span>
+            <span class="pill">AWS S3 (optional)</span>
+            <span class="pill">Docker (optional)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTS -->
+  <section id="certs">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <p class="kicker">Proof</p>
+          <h2>Certifications & Achievements</h2>
+        </div>
+        <p class="sub">Add items relevant to USA roles (Google DA, AWS, Kaggle, etc.).</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card reveal">
+          <h3 style="font-family:'Raleway',sans-serif;margin:0 0 10px 0;">Certifications</h3>
+          <ul class="clean">
+            <li>Google Data Analytics (placeholder)</li>
+            <li>AWS Cloud Practitioner (placeholder)</li>
+          </ul>
+        </div>
+        <div class="card reveal delay-1">
+          <h3 style="font-family:'Raleway',sans-serif;margin:0 0 10px 0;">Achievements</h3>
+          <ul class="clean">
+            <li>Kaggle competitions / notebooks (placeholder)</li>
+            <li>Scholarship / award (placeholder)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <p class="kicker">Let’s talk</p>
+          <h2>Contact</h2>
+        </div>
+        <p class="sub">This form works via Formspree (recommended). If not set, it falls back to mailto.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card reveal">
+          <h3 style="font-family:'Raleway',sans-serif;margin:0 0 10px 0;">Get in touch</h3>
+          <p class="sub" style="margin:0 0 14px 0;">
+            I’m actively looking for internship opportunities in the USA (Data Analyst / Data Engineer).
+            If you think I’m a fit, I’d love to connect.
+          </p>
+
+          <p class="note"><b>Email:</b> <a href="mailto:anusha@email.com">anusha@email.com</a></p>
+          <p class="note"><b>LinkedIn:</b> <a href="https://www.linkedin.com/" target="_blank" rel="noopener">linkedin.com/in/your-handle</a></p>
+          <p class="note"><b>GitHub:</b> <a href="https://github.com/" target="_blank" rel="noopener">github.com/your-handle</a></p>
+        </div>
+
+        <div class="card reveal delay-1">
+          <!-- Formspree endpoint: replace action URL -->
+          <form id="contactForm" action="https://formspree.io/f/maqpezng" method="POST">
+            <div class="form-row">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" required />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@company.com" required />
+              </div>
+            </div>
+
+            <div>
+              <label for="subject">Subject</label>
+              <input id="subject" name="subject" type="text" placeholder="Internship opportunity / Collaboration" required />
+            </div>
+
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Write your message..." required></textarea>
+            </div>
+
+            <!-- Formspree settings -->
+            <input type="hidden" name="_subject" value="Portfolio Contact: Anusha Anand Karve" />
+            <input type="hidden" name="_format" value="plain" />
+
+            <button class="btn btn-primary" type="submit" id="submitBtn">Send Message</button>
+            <p class="note" id="formStatus" aria-live="polite"></p>
+
+            <p class="note">
+              If the form doesn’t submit (no endpoint set), it will open your email app automatically.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <span>© <span id="year"></span> Anusha Anand Karve</span>
+        <span>
+          <a href="#top">Back to top</a> ·
+          <a href="#projects">Projects</a> ·
+          <a href="#contact">Contact</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // -------- Helpers
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+
+    // -------- Hero buttons
+    $("#btnProjects")?.addEventListener("click", () => $("#projects")?.scrollIntoView({behavior:"smooth"}));
+    $("#btnContact")?.addEventListener("click", () => $("#contact")?.scrollIntoView({behavior:"smooth"}));
+
+    // -------- Footer year
+    $("#year").textContent = new Date().getFullYear();
+
+    // -------- Scroll reveal (animations)
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!prefersReduced) {
+      const observer = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add("show");
+            observer.unobserve(e.target);
+          }
+        }
+      }, { threshold: 0.12 });
+
+      $$(".reveal").forEach(el => observer.observe(el));
+    } else {
+      $$(".reveal").forEach(el => el.classList.add("show"));
+    }
+
+    // -------- Active nav link highlight
+    const navLinks = $$("[data-nav]");
+    const sections = navLinks
+      .map(a => document.getElementById(a.getAttribute("data-nav")))
+      .filter(Boolean);
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => a.classList.remove("active"));
+          const hit = navLinks.find(a => a.getAttribute("data-nav") === entry.target.id);
+          hit?.classList.add("active");
+        }
+      });
+    }, { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 });
+
+    sections.forEach(sec => navObserver.observe(sec));
+
+    // -------- Contact form: Formspree + mailto fallback
+    const form = $("#contactForm");
+    const statusEl = $("#formStatus");
+    const submitBtn = $("#submitBtn");
+
+    function mailtoFallback() {
+      const name = $("#name").value.trim();
+      const email = $("#email").value.trim();
+      const subject = $("#subject").value.trim();
+      const message = $("#message").value.trim();
+
+      const to = "anusha@email.com"; // TODO: replace
+      const body =
+`Name: ${name}
+Email: ${email}
+
+${message}`;
+
+      const url = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = url;
+    }
+
+    form?.addEventListener("submit", async (e) => {
+      // If endpoint not set, fallback immediately
+      const action = form.getAttribute("action") || "";
+      const endpointMissing = action.includes("YOUR_FORMSPREE_ENDPOINT");
+
+      if (endpointMissing) {
+        e.preventDefault();
+        statusEl.textContent = "Opening email client (form endpoint not configured).";
+        mailtoFallback();
+        return;
+      }
+
+      // Try submit via fetch so we can show a success message without leaving page
+      e.preventDefault();
+      statusEl.textContent = "";
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+
+      try {
+        const formData = new FormData(form);
+        const res = await fetch(action, {
+          method: "POST",
+          body: formData,
+          headers: { "Accept": "application/json" }
+        });
+
+        if (res.ok) {
+          form.reset();
+          statusEl.textContent = "✅ Message sent successfully. Thank you!";
+        } else {
+          // If Formspree errors, fallback to mailto
+          statusEl.textContent = "Form service error. Opening email client instead...";
+          mailtoFallback();
+        }
+      } catch (err) {
+        statusEl.textContent = "Network error. Opening email client instead...";
+        mailtoFallback();
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send Message";
+      }
+    });
+  </script>
+</body>
+</html>
