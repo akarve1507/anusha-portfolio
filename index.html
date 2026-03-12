@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/png" href="logo.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anusha Anand Karve | Portfolio</title>
+  <title>Anusha Karve | Portfolio</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +24,7 @@
 
       --bg: #FCFAFB;
       --text: var(--c-deep);
-      --muted: rgba(67,66,121,0.75);
+      --muted: rgba(67,66,121,0.76);
       --card: rgba(242,221,225,0.55);
       --border: rgba(203,199,216,0.9);
 
@@ -33,6 +34,9 @@
       --container: 1120px;
 
       --ease: cubic-bezier(.2,.8,.2,1);
+      --ease2: cubic-bezier(.22,1,.36,1);
+
+      --navH: 70px;
     }
 
     *{box-sizing:border-box}
@@ -53,14 +57,16 @@
 
     /* Layout */
     .container{max-width:var(--container); margin:0 auto; padding:0 20px}
-    section{padding:86px 0}
+    section{padding:86px 0; scroll-margin-top: calc(var(--navH) + 18px);}
+    main#top{scroll-margin-top: calc(var(--navH) + 18px);}
+
     .section-head{
       display:flex; justify-content:space-between; align-items:flex-end;
       gap:16px; margin-bottom:28px;
     }
     .kicker{
       font-family:"Lora", serif;
-      color:rgba(67,66,121,0.8);
+      color:rgba(67,66,121,0.82);
       font-style:italic;
       margin:0 0 8px 0;
     }
@@ -74,43 +80,51 @@
     .sub{
       color:var(--muted);
       margin:0;
-      max-width:62ch;
-      line-height:1.6;
+      max-width:66ch;
+      line-height:1.7;
     }
 
     /* Navbar */
     .nav-wrap{
       position:sticky; top:0; z-index:100;
       backdrop-filter: blur(10px);
-      background: rgba(252,250,251,0.72);
+      background: rgba(252,250,251,0.74);
       border-bottom:1px solid rgba(203,199,216,0.55);
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
       padding:14px 0;
       gap:14px;
+      min-height: var(--navH);
     }
     .brand{
       display:flex; align-items:center; gap:10px;
       min-width: 220px;
     }
     .brand-badge{
-      width:36px; height:36px; border-radius:12px;
-      background: linear-gradient(135deg, var(--c-purple), var(--c-blue));
-      box-shadow: var(--shadow2);
+      	display:flex;
+	align-items:center;
+	justify-content:center;
+	color:white;
+	font-family:"Raleway", sans-serif;
+	font-weight:800;
+	font-size:14px;
+	letter-spacing:0.02em;
     }
     .brand-name{
       font-family:"Raleway", sans-serif;
       font-weight:800;
       letter-spacing:-0.02em;
     }
+
+    /* Desktop nav */
     .nav-links{
       display:flex; gap:18px; align-items:center; flex-wrap:wrap;
       justify-content:flex-end;
     }
     .nav-links a{
       font-size:14px;
-      color:rgba(67,66,121,0.86);
+      color:rgba(67,66,121,0.88);
       padding:8px 10px;
       border-radius:12px;
       transition: background .25s var(--ease), color .25s var(--ease);
@@ -123,6 +137,69 @@
       color: var(--c-deep);
       box-shadow: inset 0 0 0 1px rgba(94,98,169,0.18);
     }
+
+    /* Mobile nav (hamburger) */
+    .nav-right{display:flex; align-items:center; gap:10px;}
+    .hamburger{
+      display:none;
+      width:44px; height:44px;
+      border-radius:14px;
+      border:1px solid rgba(203,199,216,0.85);
+      background: rgba(252,250,251,0.7);
+      box-shadow: 0 10px 25px rgba(67,66,121,0.06);
+      cursor:pointer;
+      transition: transform .18s var(--ease), background .25s var(--ease), box-shadow .25s var(--ease);
+    }
+    .hamburger:hover{background: rgba(252,250,251,0.9); box-shadow: var(--shadow2);}
+    .hamburger:active{transform: translateY(1px);}
+    .hamburger-lines{
+      width:18px; height:12px; margin:0 auto;
+      display:flex; flex-direction:column; justify-content:space-between;
+    }
+    .hamburger-lines span{
+      display:block; height:2px; border-radius:99px;
+      background: rgba(67,66,121,0.85);
+      transition: transform .35s var(--ease2), opacity .25s var(--ease2);
+      transform-origin:center;
+    }
+    .hamburger[aria-expanded="true"] .hamburger-lines span:nth-child(1){transform: translateY(5px) rotate(45deg);}
+    .hamburger[aria-expanded="true"] .hamburger-lines span:nth-child(2){opacity:0;}
+    .hamburger[aria-expanded="true"] .hamburger-lines span:nth-child(3){transform: translateY(-5px) rotate(-45deg);}
+
+    .mobile-menu{
+      display:none;
+      position: absolute;
+      left: 0; right: 0;
+      top: calc(var(--navH) + 1px);
+      padding: 14px 0 18px 0;
+      background: rgba(252,250,251,0.92);
+      border-bottom:1px solid rgba(203,199,216,0.55);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 40px rgba(67,66,121,0.10);
+      transform: translateY(-8px);
+      opacity: 0;
+      pointer-events:none;
+      transition: transform .35s var(--ease2), opacity .35s var(--ease2);
+    }
+    .mobile-menu.open{
+      opacity:1;
+      transform: translateY(0);
+      pointer-events:auto;
+    }
+    .mobile-menu .inner{
+      display:grid;
+      gap:10px;
+    }
+    .mobile-menu a{
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(203,199,216,0.7);
+      background: rgba(252,250,251,0.7);
+      color: rgba(67,66,121,0.92);
+      transition: background .25s var(--ease), transform .18s var(--ease);
+    }
+    .mobile-menu a:hover{background: rgba(242,221,225,0.6);}
+    .mobile-menu a:active{transform: translateY(1px);}
 
     /* Buttons */
     .btn{
@@ -182,14 +259,14 @@
       font-family:"Lora", serif;
       font-style:italic;
       font-size:18px;
-      color:rgba(67,66,121,0.86);
+      color:rgba(67,66,121,0.90);
       margin:0 0 14px 0;
     }
     .hero p{
       margin:0 0 20px 0;
       color: var(--muted);
       line-height:1.7;
-      max-width:62ch;
+      max-width:66ch;
     }
     .hero-cta{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
     .quicklinks{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
@@ -199,9 +276,12 @@
       border-radius:999px;
       background: rgba(203,199,216,0.25);
       border:1px solid rgba(203,199,216,0.65);
-      color: rgba(67,66,121,0.9);
+      color: rgba(67,66,121,0.92);
       font-size:13px;
+      transition: transform .18s var(--ease), background .25s var(--ease);
     }
+    .chip:hover{transform: translateY(-2px); background: rgba(203,199,216,0.32);}
+
     .hero-card{
       border-radius: var(--radius);
       background: rgba(242,221,225,0.55);
@@ -210,47 +290,87 @@
       padding: 16px;
       position:relative;
       overflow:hidden;
+      transform: translateY(0);
+      transition: transform .6s var(--ease2);
     }
     .hero-card::before{
       content:"";
       position:absolute; inset:-40px -40px auto auto;
       width:180px; height:180px; border-radius:40px;
-      background: radial-gradient(circle at 30% 30%, rgba(141,183,210,0.5), transparent 60%);
+      background: radial-gradient(circle at 30% 30%, rgba(141,183,210,0.55), transparent 60%);
       transform: rotate(18deg);
     }
+    .hero-card:hover{transform: translateY(-2px);}
     .avatar{
       border-radius: 16px;
       border: 1px solid rgba(203,199,216,0.8);
       overflow:hidden;
       aspect-ratio: 1 / 1;
-      background: rgba(252,250,251,0.8);
+      background: rgba(252,250,251,0.85);
     }
     .hero-card .meta{
       margin-top:12px;
       display:flex; gap:10px; flex-wrap:wrap;
+      position:relative;
+      z-index:1;
     }
+
+    /* Elegant hero entrance (stagger) */
+    .enter{
+      opacity:0;
+      transform: translateY(14px);
+      filter: blur(6px);
+      transition: opacity .9s var(--ease2), transform .9s var(--ease2), filter .9s var(--ease2);
+      will-change: opacity, transform, filter;
+    }
+    .enter.in{
+      opacity:1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+    .d1{transition-delay:.06s}
+    .d2{transition-delay:.14s}
+    .d3{transition-delay:.22s}
+    .d4{transition-delay:.30s}
+    .d5{transition-delay:.38s}
 
     /* Cards and grids */
     .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px}
     .grid-3{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px}
+
     .card{
       border-radius: var(--radius);
-      background: rgba(252,250,251,0.7);
+      background: rgba(252,250,251,0.72);
       border: 1px solid rgba(203,199,216,0.75);
       box-shadow: 0 10px 25px rgba(67,66,121,0.08);
       padding: 18px;
+      position:relative;
+      overflow:hidden;
       transition: transform .22s var(--ease), box-shadow .28s var(--ease), border .28s var(--ease);
+    }
+    /* subtle gradient sweep on hover */
+    .card::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(420px 180px at 20% 0%, rgba(141,183,210,0.18), transparent 50%),
+                  radial-gradient(420px 180px at 85% 100%, rgba(242,182,192,0.20), transparent 55%);
+      opacity:0;
+      transition: opacity .35s var(--ease2);
+      pointer-events:none;
     }
     .card:hover{
       transform: translateY(-3px);
       box-shadow: var(--shadow2);
       border-color: rgba(94,98,169,0.28);
     }
+    .card:hover::after{opacity:1;}
 
     /* Projects */
     .project-title{
       display:flex; justify-content:space-between; align-items:flex-start; gap:12px;
       margin-bottom:10px;
+      position:relative;
+      z-index:1;
     }
     .project-title h3{
       font-family:"Raleway", sans-serif;
@@ -259,23 +379,32 @@
       line-height:1.2;
       letter-spacing:-0.01em;
     }
-    .project-problem{margin:0 0 12px 0; color:var(--muted); line-height:1.6}
-    ul.clean{margin:0 0 12px 18px; color:rgba(67,66,121,0.88); line-height:1.6}
-    .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
+    .project-problem{margin:0 0 12px 0; color:var(--muted); line-height:1.65; position:relative; z-index:1;}
+    ul.clean{margin:0 0 12px 18px; color:rgba(67,66,121,0.90); line-height:1.65; position:relative; z-index:1;}
+    .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; position:relative; z-index:1;}
     .tag{
       font-size:12px;
       padding:7px 10px;
       border-radius:999px;
       background: rgba(141,183,210,0.22);
       border:1px solid rgba(141,183,210,0.35);
-      color: rgba(67,66,121,0.9);
+      color: rgba(67,66,121,0.92);
     }
-    .project-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+
+    .project-note{
+      margin-top:12px;
+      padding-top:12px;
+      border-top:1px solid rgba(203,199,216,0.6);
+      font-size:13px;
+      color: rgba(67,66,121,0.78);
+      line-height:1.5;
+      position:relative; z-index:1;
+    }
 
     /* Experience */
     .timeline{display:flex; flex-direction:column; gap:14px}
     .tl{
-      display:grid; grid-template-columns: 150px 1fr; gap:14px;
+      display:grid; grid-template-columns: 165px 1fr; gap:14px;
       align-items:flex-start;
       padding:16px;
       border-radius: var(--radius);
@@ -283,9 +412,9 @@
       background: rgba(252,250,251,0.65);
     }
     .when{color:rgba(67,66,121,0.75); font-size:13px}
-    .role{margin:0; font-weight:700}
+    .role{margin:0; font-weight:800}
     .org{margin:4px 0 8px 0; color:var(--muted)}
-    .tl ul{margin:0 0 0 18px; color:rgba(67,66,121,0.88); line-height:1.6}
+    .tl ul{margin:0 0 0 18px; color:rgba(67,66,121,0.90); line-height:1.65}
 
     /* Skills */
     .skill-group h3{
@@ -299,21 +428,21 @@
       background: rgba(242,221,225,0.65);
       border:1px solid rgba(203,199,216,0.85);
       font-size:13px;
-      color: rgba(67,66,121,0.9);
+      color: rgba(67,66,121,0.92);
       transition: transform .18s var(--ease);
     }
     .pill:hover{transform: translateY(-2px)}
 
     /* Contact */
     form{display:grid; gap:12px}
-    label{font-size:13px; color: rgba(67,66,121,0.85)}
+    label{font-size:13px; color: rgba(67,66,121,0.86)}
     input, textarea{
       width:100%;
       border-radius:14px;
       border:1px solid rgba(203,199,216,0.85);
       padding:12px 12px;
       font: inherit;
-      background: rgba(252,250,251,0.8);
+      background: rgba(252,250,251,0.85);
       outline:none;
       transition: box-shadow .2s var(--ease), border .2s var(--ease);
     }
@@ -327,8 +456,8 @@
     .note{
       margin:0;
       font-size:13px;
-      color: rgba(67,66,121,0.75);
-      line-height:1.5;
+      color: rgba(67,66,121,0.78);
+      line-height:1.55;
     }
 
     /* Footer */
@@ -341,42 +470,52 @@
     .foot a{color: rgba(67,66,121,0.85); text-decoration:underline; text-decoration-color: rgba(94,98,169,0.28)}
     .foot a:hover{color: var(--c-deep)}
 
-    /* Scroll reveal animations */
+    /* Scroll reveal animations (section content) */
     .reveal{
       opacity:0;
       transform: translateY(18px);
-      transition: opacity .7s var(--ease), transform .7s var(--ease);
-      will-change: opacity, transform;
+      filter: blur(8px);
+      transition: opacity .85s var(--ease2), transform .85s var(--ease2), filter .85s var(--ease2);
+      will-change: opacity, transform, filter;
     }
     .reveal.show{
       opacity:1;
       transform: translateY(0);
+      filter: blur(0);
     }
     .reveal.delay-1{transition-delay:.08s}
     .reveal.delay-2{transition-delay:.16s}
     .reveal.delay-3{transition-delay:.24s}
 
     /* Responsive */
-    @media (max-width: 920px){
-      .hero-grid{grid-template-columns:1fr; }
+    @media (max-width: 980px){
       h1{font-size:44px}
+      .hero-grid{grid-template-columns:1fr}
       .grid-3{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
       .tl{grid-template-columns:1fr}
+
+      /* Desktop nav hidden; hamburger shown */
+      .nav-links{display:none;}
+      .hamburger{display:inline-flex; align-items:center; justify-content:center;}
+      .mobile-menu{display:block;}
       .brand{min-width:auto}
     }
     @media (max-width: 520px){
       h1{font-size:38px}
       .form-row{grid-template-columns:1fr}
-      .nav-links{gap:8px}
-      .nav-links a{padding:8px 8px}
+      .hero-cta{flex-direction:column; align-items:stretch;}
+      .hero-cta .btn{width:100%;}
+      .quicklinks{gap:8px}
+      .chip{width:fit-content}
     }
 
     /* Reduced motion support */
     @media (prefers-reduced-motion: reduce){
       html{scroll-behavior:auto}
-      .reveal, .card, .btn, .pill{transition:none !important}
-      .reveal{opacity:1; transform:none}
+      .reveal, .card, .btn, .pill, .enter, .mobile-menu{transition:none !important}
+      .reveal, .enter{opacity:1; transform:none; filter:none}
+      .mobile-menu{opacity:1; transform:none}
     }
   </style>
 </head>
@@ -388,20 +527,47 @@
     <div class="container">
       <nav class="nav" aria-label="Primary">
         <a class="brand" href="#top">
-          <span class="brand-badge" aria-hidden="true"></span>
-          <span class="brand-name">Anusha Anand Karve</span>
+          <span class="brand-badge" aria-hidden="true">AK</span>
+          <span class="brand-name">Anusha Karve</span>
         </a>
 
-        <div class="nav-links" role="navigation">
-          <a href="#about" data-nav="about">About</a>
-          <a href="#projects" data-nav="projects">Projects</a>
-          <a href="#experience" data-nav="experience">Experience</a>
-          <a href="#skills" data-nav="skills">Skills</a>
-          <a href="#certs" data-nav="certs">Certifications</a>
-          <a href="#contact" data-nav="contact">Contact</a>
-          <a class="btn btn-sm btn-primary" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <div class="nav-right">
+          <!-- Desktop links -->
+          <div class="nav-links" role="navigation" aria-label="Desktop navigation">
+            <a href="#about" data-nav="about">About</a>
+            <a href="#projects" data-nav="projects">Projects</a>
+            <a href="#experience" data-nav="experience">Experience</a>
+            <a href="#education" data-nav="education">Education</a>
+            <a href="#skills" data-nav="skills">Skills</a>
+            <a href="#certs" data-nav="certs">Certifications</a>
+            <a href="#contact" data-nav="contact">Contact</a>
+            <a class="btn btn-sm btn-primary" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+          </div>
+
+          <!-- Mobile hamburger -->
+          <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+            <span class="hamburger-lines" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+          </button>
         </div>
       </nav>
+    </div>
+
+    <!-- Mobile menu panel -->
+    <div class="mobile-menu" id="mobileMenu" aria-label="Mobile menu">
+      <div class="container">
+        <div class="inner">
+          <a href="#about" data-mnav>About</a>
+          <a href="#projects" data-mnav>Projects</a>
+          <a href="#experience" data-mnav>Experience</a>
+          <a href="#education" data-mnav>Education</a>
+          <a href="#skills" data-mnav>Skills</a>
+          <a href="#certs" data-mnav>Certifications</a>
+          <a href="#contact" data-mnav>Contact</a>
+          <a href="resume.pdf" target="_blank" rel="noopener" data-mnav>Resume</a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -410,40 +576,40 @@
     <div class="container">
       <div class="hero-grid">
         <div>
-          <div class="reveal show">
-            <h1>Anusha Anand Karve</h1>
-            <p class="tagline">Data Analyst / Data Engineer focused on building reliable pipelines and insights.</p>
-            <p>
-              I build analytics solutions and data systems using <b>Python</b>, <b>SQL</b>, and modern tooling.
-              I’m currently seeking <b>USA internship opportunities</b> in Data Analytics / Data Engineering.
+          <div>
+            <h1 class="enter d1" id="heroName">Anusha Karve</h1>
+            <p class="tagline enter d2">Data Science & Data Engineering Graduate Student</p>
+            <p class="enter d3">
+              I design scalable analytics systems — from data warehousing and ETL pipelines to predictive modeling and decision intelligence.
+              I’m currently seeking <b>Summer 2026 internship opportunities</b> in <b>Data Science</b>, <b>Analytics</b>, and <b>Data Engineering</b> (USA).
             </p>
-            <div class="hero-cta">
+
+            <div class="hero-cta enter d4">
               <button class="btn btn-primary" id="btnProjects">View Projects</button>
               <button class="btn btn-secondary" id="btnContact">Get in Touch</button>
-              <a class="btn btn-ghost" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-              <a class="btn btn-ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="btn btn-ghost" href="https://www.linkedin.com/in/anusha-k-057a28329/" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="btn btn-ghost" href="mailto:anushakarve@gmail.com">Email</a>
             </div>
 
-            <div class="quicklinks">
+            <div class="quicklinks enter d5">
               <span class="chip">Python • SQL • ETL</span>
-              <span class="chip">Dashboards • Insights</span>
-              <span class="chip">Cloud & Data Tools</span>
+              <span class="chip">Warehousing • Analytics</span>
+              <span class="chip">Streamlit • Modeling</span>
             </div>
           </div>
         </div>
 
-        <aside class="hero-card reveal show delay-1" aria-label="Profile card">
+        <aside class="hero-card enter d4" aria-label="Profile card">
           <div class="avatar">
-            <!-- Replace src with your image path -->
-            <img src="profile.jpg" alt="Portrait of Anusha Anand Karve">
+            <img src="profile.jpg" alt="Portrait of Anusha Karve">
           </div>
           <div class="meta">
-            <span class="chip">Open to Summer Internships</span>
+            <span class="chip">Open to Summer 2026</span>
             <span class="chip">USA</span>
-            <span class="chip">Data • Analytics • Engineering</span>
+            <span class="chip">Hybrid: DS + DE</span>
           </div>
-          <p class="note" style="margin-top:12px;">
-            Tip: Put the simple site link on the resume and applications. Use the themed site for LinkedIn + networking.
+          <p class="note" style="margin-top:12px; position:relative; z-index:1;">
+            Elegant, recruiter-first portfolio focused on high-signal projects and impact.
           </p>
         </aside>
       </div>
@@ -459,7 +625,7 @@
           <h2>About</h2>
         </div>
         <p class="sub">
-          Keep this section short. Recruiters care most about projects + skills + impact.
+          I build reliable data systems and analytics workflows that turn raw data into decisions.
         </p>
       </div>
 
@@ -467,16 +633,16 @@
         <div class="card reveal">
           <h3 style="font-family:'Raleway',sans-serif;margin:0 0 10px 0;">What I do</h3>
           <p class="sub" style="margin:0;">
-            I enjoy turning messy data into trustworthy insights — from cleaning and modeling data to building
-            dashboards and pipelines. I care about correctness, clarity, and measurable outcomes.
+            My work spans end-to-end analytics: data modeling and warehousing, ETL pipelines, applied machine learning,
+            and stakeholder-ready insights. I care about correctness, clarity, and repeatable systems.
           </p>
         </div>
 
         <div class="card reveal delay-1">
-          <h3 style="font-family:'Raleway',sans-serif;margin:0 0 10px 0;">What I'm looking for</h3>
+          <h3 style="font-family:'Raleway',sans-serif;margin:0 0 10px 0;">What I’m looking for</h3>
           <ul class="clean">
-            <li>Data Analyst / Data Engineer internships (USA)</li>
-            <li>Work involving SQL, Python, dashboards, ETL, and analytics</li>
+            <li>Summer 2026 internships (USA) in Data Science / Data Analytics / Data Engineering</li>
+            <li>Work involving Python, SQL, pipelines, warehousing, dashboards, and model evaluation</li>
             <li>Teams that value ownership, communication, and clean systems</li>
           </ul>
         </div>
@@ -492,67 +658,70 @@
           <p class="kicker">High-signal work</p>
           <h2>Projects</h2>
         </div>
-        <p class="sub">Add 3–5 projects max. Each should show problem → approach → measurable result.</p>
+        <p class="sub">Three projects that demonstrate hybrid strength: systems + analytics + decision intelligence.</p>
       </div>
 
       <div class="grid-3">
         <article class="card reveal">
           <div class="project-title">
-            <h3>ProactiveSLO</h3>
-            <span class="chip">Case Study</span>
+            <h3>Event-Driven Market Volatility & Sector Sensitivity Platform</h3>
+            <span class="chip">Time Series</span>
           </div>
-          <p class="project-problem">Predict SLO violations 30–60 seconds ahead using telemetry signals.</p>
+          <p class="project-problem">
+            Event-driven analytics system to quantify sector responses around macroeconomic releases.
+          </p>
           <ul class="clean">
-            <li>Built feature pipeline with sliding windows over service metrics.</li>
-            <li>Trained baseline models and evaluated precision/recall tradeoffs.</li>
-            <li>Added guardrails + actions: tuning, rate limiting, autoscaling.</li>
+            <li>Built a time-series pipeline integrating sector ETF data with event calendars.</li>
+            <li>Evaluated persistence baseline vs Logistic Regression (with/without event features).</li>
+            <li>Engineered event-window features and rolling risk metrics (volatility, drawdown).</li>
           </ul>
           <div class="tags">
-            <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Prometheus</span><span class="tag">ML</span>
+            <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">SQL</span><span class="tag">Logistic Regression</span>
           </div>
-          <div class="project-actions">
-            <a class="btn btn-sm btn-primary" href="#" target="_blank" rel="noopener">GitHub</a>
-            <a class="btn btn-sm btn-secondary" href="#" target="_blank" rel="noopener">Demo</a>
+          <div class="project-note">
+            Code and detailed implementation available upon request (ongoing work).
           </div>
         </article>
 
         <article class="card reveal delay-1">
           <div class="project-title">
-            <h3>Distributed Task Processing Service</h3>
-            <span class="chip">System</span>
+            <h3>Customer Churn Risk Analytics Pipeline (IBM Telco)</h3>
+            <span class="chip">Decision Intelligence</span>
           </div>
-          <p class="project-problem">Async job scheduling with concurrency-safe workers and retries.</p>
+          <p class="project-problem">
+            End-to-end churn prediction workflow with evaluation, thresholding, and business-ready outputs.
+          </p>
           <ul class="clean">
-            <li>DB-backed leasing + retry logic for reliable processing.</li>
-            <li>Benchmarked throughput and failure behavior under load.</li>
-            <li>Designed clean APIs and observability-ready metrics.</li>
+            <li>Built Logistic Regression churn model with engineered customer and contract features.</li>
+            <li>Focused on PR tradeoffs + threshold tuning for cost-aware retention targeting.</li>
+            <li>Packaged insights into an interactive Streamlit layer for stakeholder exploration.</li>
           </ul>
           <div class="tags">
-            <span class="tag">Backend</span><span class="tag">Distributed</span><span class="tag">SQL</span><span class="tag">Monitoring</span>
+            <span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">SQL</span><span class="tag">Streamlit</span>
           </div>
-          <div class="project-actions">
-            <a class="btn btn-sm btn-primary" href="#" target="_blank" rel="noopener">GitHub</a>
-            <a class="btn btn-sm btn-secondary" href="#" target="_blank" rel="noopener">Write-up</a>
+          <div class="project-note">
+            Implementation details available upon request.
           </div>
         </article>
 
         <article class="card reveal delay-2">
           <div class="project-title">
-            <h3>Analytics Dashboard Project</h3>
-            <span class="chip">Dashboard</span>
+            <h3>Instacart Retail Analytics Warehouse (30M+ Records)</h3>
+            <span class="chip">Data Warehouse</span>
           </div>
-          <p class="project-problem">Interactive dashboard to track KPIs and uncover trends.</p>
+          <p class="project-problem">
+            Scalable PostgreSQL warehouse enabling retention, reorder, and cohort analytics at large scale.
+          </p>
           <ul class="clean">
-            <li>Modeled data with clean definitions for consistent reporting.</li>
-            <li>Built visuals for trends, cohorts, and breakdowns.</li>
-            <li>Documented metrics and dashboard usage for stakeholders.</li>
+            <li>Ingested 30M+ order-item records using bulk loading + incremental batching.</li>
+            <li>Designed a dimensional model with partitions and indexing for analytical performance.</li>
+            <li>Built SQL marts powering BI dashboards (retention, reorder rate, cohort behavior).</li>
           </ul>
           <div class="tags">
-            <span class="tag">SQL</span><span class="tag">Tableau/PowerBI</span><span class="tag">EDA</span>
+            <span class="tag">PostgreSQL</span><span class="tag">ETL</span><span class="tag">Dimensional Modeling</span><span class="tag">Power BI</span>
           </div>
-          <div class="project-actions">
-            <a class="btn btn-sm btn-primary" href="#" target="_blank" rel="noopener">Dashboard</a>
-            <a class="btn btn-sm btn-secondary" href="#" target="_blank" rel="noopener">Notes</a>
+          <div class="project-note">
+            Schema and query design available upon request.
           </div>
         </article>
       </div>
@@ -567,32 +736,83 @@
           <p class="kicker">Timeline</p>
           <h2>Experience</h2>
         </div>
-        <p class="sub">Even academic/research/club work is valuable if framed with impact + outcomes.</p>
+        <p class="sub">Experience framed for impact, scale, and ownership.</p>
       </div>
 
       <div class="timeline">
         <div class="tl reveal">
           <div class="when">2025 — Present</div>
           <div>
-            <p class="role">Graduate Student</p>
-            <p class="org">SDSU — Computer Science</p>
+            <p class="role">Instructional Student Assistant (ISA) — Linear Algebra</p>
+            <p class="org">San Diego State University • MATH 254 (≈300 students)</p>
             <ul>
-              <li>Built data/engineering projects focused on reliability, analytics, and automation.</li>
-              <li>Applied statistical + engineering methods to evaluate models and system performance.</li>
+              <li>Lead weekly discussion sections reinforcing core linear algebra concepts and problem-solving.</li>
+              <li>Grade assignments and exams using Gradescope and Canvas, ensuring accuracy and timely feedback at scale.</li>
+              <li>Collaborate with course staff to maintain consistency and clarity across a large cohort.</li>
             </ul>
           </div>
         </div>
 
         <div class="tl reveal delay-1">
-          <div class="when">Add dates</div>
+          <div class="when">Oct 2023 — Apr 2024</div>
           <div>
-            <p class="role">Data/Analytics Role (Placeholder)</p>
-            <p class="org">Organization / Team</p>
+            <p class="role">Junior Analyst Intern (Previously Software Developer Intern)</p>
+            <p class="org">TechR Business Solutions</p>
             <ul>
-              <li>Action + tool + result (use numbers wherever possible).</li>
-              <li>Example: Improved query runtime by X% / processed Y rows / built Z dashboards.</li>
+              <li>Supported reporting and operational analytics through SQL querying and structured data workflows.</li>
+              <li>Built automation and data processing scripts to improve reliability and reduce manual effort.</li>
+              <li>Delivered stakeholder-ready insights via dashboards and clear metric definitions.</li>
             </ul>
           </div>
+        </div>
+
+        <div class="tl reveal delay-2">
+          <div class="when">May 2024 — Aug 2024</div>
+          <div>
+            <p class="role">Data Science Intern</p>
+            <p class="org">S.M. Enterprises</p>
+            <ul>
+              <li>Performed data preparation, analysis, and modeling tasks to support business decision-making.</li>
+              <li>Created interpretable outputs and summaries for non-technical stakeholders.</li>
+              <li>Collaborated in an iterative workflow to refine features and improve analysis quality.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <p class="kicker">Academics</p>
+          <h2>Education</h2>
+        </div>
+        <p class="sub">Strong foundation in databases, modeling, and analytical methods.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card reveal">
+          <h3 style="font-family:'Raleway',sans-serif;margin:0 0 10px 0;">San Diego State University (SDSU)</h3>
+          <p class="sub" style="margin:0 0 10px 0;">
+            M.S. Computational Science (Data Science Emphasis) • GPA: 3.8 • 2025 — Present
+          </p>
+          <ul class="clean">
+            <li>Relevant coursework: Database Fundamentals, Mathematical Modeling, Computational Methods</li>
+            <li>Teaching/leadership: ISA for Linear Algebra (MATH 254)</li>
+          </ul>
+        </div>
+
+        <div class="card reveal delay-1">
+          <h3 style="font-family:'Raleway',sans-serif;margin:0 0 10px 0;">P.E.S’s Modern College of Engineering (SPPU)</h3>
+          <p class="sub" style="margin:0 0 10px 0;">
+            B.E. Electronics & Computer Engineering • Ranked 1st in Department • 2021 — 2025
+          </p>
+          <ul class="clean">
+            <li>Relevant coursework: DBMS, Data Mining & Warehousing, Data Analytics (Python), DSA, BI</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -606,7 +826,7 @@
           <p class="kicker">Toolbox</p>
           <h2>Skills</h2>
         </div>
-        <p class="sub">Group skills for recruiter scanning. Keep it honest + aligned with projects.</p>
+        <p class="sub">Organized for recruiter scanning: languages, analytics, engineering, and visualization.</p>
       </div>
 
       <div class="grid-3">
@@ -615,7 +835,6 @@
           <div class="pillrow">
             <span class="pill">Python</span>
             <span class="pill">SQL</span>
-            <span class="pill">Java (optional)</span>
           </div>
         </div>
 
@@ -625,18 +844,19 @@
             <span class="pill">Pandas</span>
             <span class="pill">NumPy</span>
             <span class="pill">EDA</span>
-            <span class="pill">Data Cleaning</span>
-            <span class="pill">Statistics</span>
+            <span class="pill">Feature Engineering</span>
+            <span class="pill">Model Evaluation</span>
           </div>
         </div>
 
         <div class="card reveal delay-2 skill-group">
-          <h3>Data Engineering / Tools</h3>
+          <h3>Data Engineering & BI</h3>
           <div class="pillrow">
+            <span class="pill">PostgreSQL</span>
             <span class="pill">ETL</span>
-            <span class="pill">Airflow (optional)</span>
-            <span class="pill">Spark (optional)</span>
-            <span class="pill">AWS S3 (optional)</span>
+            <span class="pill">Dimensional Modeling</span>
+            <span class="pill">Streamlit</span>
+            <span class="pill">Power BI</span>
             <span class="pill">Docker (optional)</span>
           </div>
         </div>
@@ -644,35 +864,66 @@
     </div>
   </section>
 
-  <!-- CERTS -->
-  <section id="certs">
-    <div class="container">
-      <div class="section-head reveal">
-        <div>
-          <p class="kicker">Proof</p>
-          <h2>Certifications & Achievements</h2>
-        </div>
-        <p class="sub">Add items relevant to USA roles (Google DA, AWS, Kaggle, etc.).</p>
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <p class="kicker">Professional Development</p>
+        <h2>Certifications</h2>
+      </div>
+      <p class="sub">
+        Industry-recognized programs reinforcing foundations in data science, analytics, and applied programming.
+      </p>
+    </div>
+
+    <div class="grid-2">
+
+      <!-- IBM Data Science -->
+      <div class="card reveal">
+        <h3 style="font-family:'Raleway',sans-serif;margin:0 0 6px 0;">
+          IBM Data Science Specialization
+        </h3>
+        <p class="sub" style="margin:0 0 8px 0;">
+          Issued Jul 2024 • IBM
+        </p>
+
+        <ul class="clean">
+          <li>Data Analysis & Visualization</li>
+          <li>Machine Learning Fundamentals</li>
+          <li>Applied Data Science Projects</li>
+          <li>Python for Data Science</li>
+        </ul>
+
+        <p class="note">
+          Credential ID: 72JEV257JJNC
+        </p>
       </div>
 
-      <div class="grid-2">
-        <div class="card reveal">
-          <h3 style="font-family:'Raleway',sans-serif;margin:0 0 10px 0;">Certifications</h3>
-          <ul class="clean">
-            <li>Google Data Analytics (placeholder)</li>
-            <li>AWS Cloud Practitioner (placeholder)</li>
-          </ul>
-        </div>
-        <div class="card reveal delay-1">
-          <h3 style="font-family:'Raleway',sans-serif;margin:0 0 10px 0;">Achievements</h3>
-          <ul class="clean">
-            <li>Kaggle competitions / notebooks (placeholder)</li>
-            <li>Scholarship / award (placeholder)</li>
-          </ul>
-        </div>
+      <!-- Python for Everybody -->
+      <div class="card reveal delay-1">
+        <h3 style="font-family:'Raleway',sans-serif;margin:0 0 6px 0;">
+          Python for Everybody Specialization
+        </h3>
+        <p class="sub" style="margin:0 0 8px 0;">
+          Issued Jun 2024 • University of Michigan
+        </p>
+
+        <ul class="clean">
+          <li>Python Programming Foundations</li>
+          <li>Data Structures & APIs</li>
+          <li>Database Interaction (SQL)</li>
+          <li>Capstone Data Projects</li>
+        </ul>
+
+        <p class="note">
+          Credential ID: 4PF5D7BM854B
+        </p>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- CONTACT -->
   <section id="contact">
@@ -682,24 +933,32 @@
           <p class="kicker">Let’s talk</p>
           <h2>Contact</h2>
         </div>
-        <p class="sub">This form works via Formspree (recommended). If not set, it falls back to mailto.</p>
+        <p class="sub">The form submits via Formspree. If it fails, it falls back to email.</p>
       </div>
 
       <div class="grid-2">
         <div class="card reveal">
           <h3 style="font-family:'Raleway',sans-serif;margin:0 0 10px 0;">Get in touch</h3>
           <p class="sub" style="margin:0 0 14px 0;">
-            I’m actively looking for internship opportunities in the USA (Data Analyst / Data Engineer).
+            I’m actively seeking Summer 2026 opportunities in Data Science, Analytics, and Data Engineering in the USA.
             If you think I’m a fit, I’d love to connect.
           </p>
 
-          <p class="note"><b>Email:</b> <a href="mailto:anusha@email.com">anusha@email.com</a></p>
-          <p class="note"><b>LinkedIn:</b> <a href="https://www.linkedin.com/" target="_blank" rel="noopener">linkedin.com/in/your-handle</a></p>
-          <p class="note"><b>GitHub:</b> <a href="https://github.com/" target="_blank" rel="noopener">github.com/your-handle</a></p>
+          <p class="note"><b>Email:</b> <a href="mailto:anushakarve@gmail.com">anushakarve@gmail.com</a></p>
+          <p class="note"><b>LinkedIn:</b>
+            <a href="https://www.linkedin.com/in/anusha-k-057a28329/" target="_blank" rel="noopener">
+              linkedin.com/in/anusha-k-057a28329
+            </a>
+          </p>
+          <p class="note"><b>GitHub:</b>
+            <a href="https://github.com/akarve1507" target="_blank" rel="noopener">
+              github.com/akarve1507
+            </a>
+            <span style="opacity:.8;">(projects private)</span>
+          </p>
         </div>
 
         <div class="card reveal delay-1">
-          <!-- Formspree endpoint: replace action URL -->
           <form id="contactForm" action="https://formspree.io/f/maqpezng" method="POST">
             <div class="form-row">
               <div>
@@ -722,15 +981,14 @@
               <textarea id="message" name="message" placeholder="Write your message..." required></textarea>
             </div>
 
-            <!-- Formspree settings -->
-            <input type="hidden" name="_subject" value="Portfolio Contact: Anusha Anand Karve" />
+            <input type="hidden" name="_subject" value="Portfolio Contact: Anusha Karve" />
             <input type="hidden" name="_format" value="plain" />
 
             <button class="btn btn-primary" type="submit" id="submitBtn">Send Message</button>
             <p class="note" id="formStatus" aria-live="polite"></p>
 
             <p class="note">
-              If the form doesn’t submit (no endpoint set), it will open your email app automatically.
+              If the form doesn’t submit due to a network issue, it will open your email app automatically.
             </p>
           </form>
         </div>
@@ -741,7 +999,7 @@
   <footer>
     <div class="container">
       <div class="foot">
-        <span>© <span id="year"></span> Anusha Anand Karve</span>
+        <span>© <span id="year"></span> Anusha Karve</span>
         <span>
           <a href="#top">Back to top</a> ·
           <a href="#projects">Projects</a> ·
@@ -756,15 +1014,25 @@
     const $ = (sel, root=document) => root.querySelector(sel);
     const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
 
+    // -------- Footer year
+    $("#year").textContent = new Date().getFullYear();
+
     // -------- Hero buttons
     $("#btnProjects")?.addEventListener("click", () => $("#projects")?.scrollIntoView({behavior:"smooth"}));
     $("#btnContact")?.addEventListener("click", () => $("#contact")?.scrollIntoView({behavior:"smooth"}));
 
-    // -------- Footer year
-    $("#year").textContent = new Date().getFullYear();
+    // -------- Elegant hero entrance
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!prefersReduced) {
+      requestAnimationFrame(() => {
+        $$(".enter").forEach(el => el.classList.add("in"));
+      });
+    } else {
+      $$(".enter").forEach(el => el.classList.add("in"));
+      $$(".reveal").forEach(el => el.classList.add("show"));
+    }
 
     // -------- Scroll reveal (animations)
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!prefersReduced) {
       const observer = new IntersectionObserver((entries) => {
         for (const e of entries) {
@@ -776,11 +1044,9 @@
       }, { threshold: 0.12 });
 
       $$(".reveal").forEach(el => observer.observe(el));
-    } else {
-      $$(".reveal").forEach(el => el.classList.add("show"));
     }
 
-    // -------- Active nav link highlight
+    // -------- Active nav link highlight (desktop)
     const navLinks = $$("[data-nav]");
     const sections = navLinks
       .map(a => document.getElementById(a.getAttribute("data-nav")))
@@ -798,6 +1064,38 @@
 
     sections.forEach(sec => navObserver.observe(sec));
 
+    // -------- Mobile hamburger menu (phone only)
+    const hamburgerBtn = $("#hamburgerBtn");
+    const mobileMenu = $("#mobileMenu");
+    const mobileLinks = $$("[data-mnav]");
+
+    function closeMobileMenu() {
+      if (!mobileMenu) return;
+      mobileMenu.classList.remove("open");
+      hamburgerBtn?.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    }
+
+    function openMobileMenu() {
+      if (!mobileMenu) return;
+      mobileMenu.classList.add("open");
+      hamburgerBtn?.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+    }
+
+    hamburgerBtn?.addEventListener("click", () => {
+      const expanded = hamburgerBtn.getAttribute("aria-expanded") === "true";
+      expanded ? closeMobileMenu() : openMobileMenu();
+    });
+
+    // Close menu when clicking a link
+    mobileLinks.forEach(a => a.addEventListener("click", () => closeMobileMenu()));
+
+    // Close menu on resize to desktop
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 980) closeMobileMenu();
+    });
+
     // -------- Contact form: Formspree + mailto fallback
     const form = $("#contactForm");
     const statusEl = $("#formStatus");
@@ -809,7 +1107,7 @@
       const subject = $("#subject").value.trim();
       const message = $("#message").value.trim();
 
-      const to = "anusha@email.com"; // TODO: replace
+      const to = "anushakarve@gmail.com";
       const body =
 `Name: ${name}
 Email: ${email}
@@ -821,18 +1119,6 @@ ${message}`;
     }
 
     form?.addEventListener("submit", async (e) => {
-      // If endpoint not set, fallback immediately
-      const action = form.getAttribute("action") || "";
-      const endpointMissing = action.includes("YOUR_FORMSPREE_ENDPOINT");
-
-      if (endpointMissing) {
-        e.preventDefault();
-        statusEl.textContent = "Opening email client (form endpoint not configured).";
-        mailtoFallback();
-        return;
-      }
-
-      // Try submit via fetch so we can show a success message without leaving page
       e.preventDefault();
       statusEl.textContent = "";
       submitBtn.disabled = true;
@@ -840,6 +1126,7 @@ ${message}`;
 
       try {
         const formData = new FormData(form);
+        const action = form.getAttribute("action") || "";
         const res = await fetch(action, {
           method: "POST",
           body: formData,
@@ -850,7 +1137,6 @@ ${message}`;
           form.reset();
           statusEl.textContent = "✅ Message sent successfully. Thank you!";
         } else {
-          // If Formspree errors, fallback to mailto
           statusEl.textContent = "Form service error. Opening email client instead...";
           mailtoFallback();
         }
